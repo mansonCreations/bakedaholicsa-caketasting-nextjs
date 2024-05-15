@@ -10,22 +10,51 @@ const quoterequestcontroller = () => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [message, setMessage] = useState('');
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [note, setMessage] = useState('');
   const [chocolateChecked, setChocolateChecked] = useState(false);
   const [chocolateGanChecked, setChocolateGanChecked] = useState(false);
   const [vanillaChecked, setVanillaChecked] = useState(false);
   const [caramelChecked, setCaramelChecked] = useState(false);
   // Function to handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Perform action with form data (e.g., send to backend)
-    console.log('Form submitted:', { fullName, email, phoneNumber, message });
-    // Reset form fields after submission
-    setFullName('');
-    setEmail('');
-    setPhoneNumber('');
-    setMessage('');
+    console.log('Form submitted:', { fullName, email, phoneNumber, note });
+    
+    let message = {
+      message: "Quote Requested with the following details",
+      name: fullName,
+      note: note,
+      email: email,
+      phone: phoneNumber,
+      //date: selectedDate.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' }),
+      // cake: {
+      //   chocolate: chocolateChecked,
+      //   vanilla: vanillaChecked,
+      //   caramel: caramelChecked
+      // },
+      // cake_Fillings: {
+      //   chocolate_Genache: chocolateGanChecked
+      // }
+    }
+    const response = await fetch('https://duvfwdo5fk.execute-api.eu-west-1.amazonaws.com/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ to: email, subject: `Quote Request for ${fullName}`, text: JSON.stringify(message) }),
+    });
+    
+    // if (response.ok) {
+      console.log('Email sent successfully');
+     // Reset form fields after submission
+     setFullName('');
+     setEmail('');
+     setPhoneNumber('');
+     setMessage('');
+    // } else {
+    //   console.error('Error sending email');
+    // }
   };
 
   const handleChocolateChange = () => {
@@ -102,7 +131,7 @@ const quoterequestcontroller = () => {
           <br></br>
           <label htmlFor="message">Message:</label>
           <br></br>
-          <textarea id="message" value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
+          <textarea id="message" value={note} onChange={(e) => setMessage(e.target.value)}></textarea>
           <br></br>
         </form>
       </div>

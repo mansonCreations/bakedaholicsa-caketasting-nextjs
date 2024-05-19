@@ -151,7 +151,7 @@ const caketastingnew = () => {
           </p>
 
           <div className={styles.grid}>
-            <Link href="/caketastingnew" className={styles.card}>
+            <a className={styles.card}>
               <h3 className={styles.text}>{cake_flavours}</h3>
             <label>
               <br></br>
@@ -180,9 +180,9 @@ const caketastingnew = () => {
             />
             Caramel
           </label>
-            </Link>
+            </a>
 
-            <a href="#" className={styles.card}>
+            <a className={styles.card}>
               <h3 className={styles.text}>{fillings_flavours}</h3>
               <label>
             <input
@@ -193,7 +193,7 @@ const caketastingnew = () => {
             Chocolate Ganache
           </label>
             </a>
-            <a href="#" className={styles.card}>
+            <a className={styles.card}>
         <h3 className={styles.text}>{personal_details}</h3>
         <div>
           <label>

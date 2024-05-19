@@ -8,7 +8,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { title, confirm_booking, cake_tasting_p3, cake_tasting_p4,
        new_cake_tasting, cake_flavours, fillings_flavours,
        personal_details, personal_details_name, personal_details_address,
-       personal_details_num_testers, personal_details_email, personal_details_select_weekend} from '../styles/language';
+       personal_details_num_testers, personal_details_email, personal_details_select_weekend, cake_tasting_p8} from '../styles/language';
 const caketastingnew = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [chocolateChecked, setChocolateChecked] = useState(false);
@@ -145,6 +145,9 @@ const caketastingnew = () => {
           </p>
           <p className={styles.description}>
           {cake_tasting_p4} 
+          </p>
+          <p className={styles.description}>
+          {cake_tasting_p8} 
           </p>
 
           <div className={styles.grid}>

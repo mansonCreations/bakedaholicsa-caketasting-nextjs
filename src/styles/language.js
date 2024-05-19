@@ -30,3 +30,5 @@ export const cake_tasting_p4 = 'Once you have selected your flavours, enter pers
 export const cake_tasting_p5 = 'Find your Surname, if there are a few of the same Surnames, please find your wedding date.';
 export const cake_tasting_p6 = 'We are keeping your tasting details safe.';
 export const cake_tasting_p7 = 'Use the security code we gave you to log you and your tasting party in.';
+export const cake_tasting_p8 = 'Note: We can only accept bookings no less than a week in advance.';
+export const quote_note = 'Note: We can only accept bookings no less than a 48 Hours prior to delivery.';

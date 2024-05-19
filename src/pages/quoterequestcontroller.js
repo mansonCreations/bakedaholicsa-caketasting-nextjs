@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/CakeTesting.module.css';
 import { useState } from 'react'; // Importing useState hook for managing form state
-import { title, quoteHeader, cake_flavours, cake_tasting_p2, new_cake_tasting, tasting_time, coming_soon, get_quote } from '../styles/language';
+import { title, quoteHeader, cake_flavours, quote_note, new_cake_tasting, tasting_time, coming_soon, get_quote } from '../styles/language';
 
 const quoterequestcontroller = () => {
   // State variables for form fields
@@ -89,6 +89,9 @@ const quoterequestcontroller = () => {
       </nav>
       <p className={styles.description}>
           Please tick the following boxes to get a quote
+      </p>
+      <p className={styles.description}>
+          {quote_note}
       </p>
 
         <div className={styles.grid}>

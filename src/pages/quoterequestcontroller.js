@@ -15,7 +15,12 @@ const quoterequestcontroller = () => {
   const [chocolateGanChecked, setChocolateGanChecked] = useState(false);
   const [vanillaChecked, setVanillaChecked] = useState(false);
   const [caramelChecked, setCaramelChecked] = useState(false);
+  const [file, setFile] = useState(null);
   // Function to handle form submission
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Perform action with form data (e.g., send to backend)
@@ -72,6 +77,24 @@ const quoterequestcontroller = () => {
     setChocolateGanChecked(!chocolateGanChecked);
   };
 
+  const handleSubmitImage = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const res = await fetch('/api/upload', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (res.ok) {
+      console.log('File uploaded successfully');
+    } else {
+      console.error('Error uploading file');
+    }
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -95,10 +118,9 @@ const quoterequestcontroller = () => {
       </p>
 
         <div className={styles.grid}>
+        <a className={styles.card}>
         <h3 className={styles.text}>{cake_flavours}</h3>
             <label>
-              <br></br>
-              <br></br>
             <input
               type="checkbox"
               checked={chocolateChecked}
@@ -106,7 +128,6 @@ const quoterequestcontroller = () => {
             />
             Chocolate
           </label>
-          <br></br>
           <br></br>
           <label>
             <input
@@ -116,9 +137,11 @@ const quoterequestcontroller = () => {
             />
             Vanilla
           </label>
+          </a>
         </div>
           
       <div className={styles.grid}>
+      <a className={styles.card}>
         <form onSubmit={handleSubmit}>
           <label htmlFor="fullName">Full Name:</label>
           <br></br>
@@ -136,7 +159,17 @@ const quoterequestcontroller = () => {
           <br></br>
           <textarea id="message" value={note} onChange={(e) => setMessage(e.target.value)}></textarea>
           <br></br>
+          <br></br>
+          <label htmlFor="message">Load image of custom desired custom cake, promise we will get it close as possible:</label>
+          <br></br>
+          <br></br>
+          {/* <form onSubmit={handleSubmitImage}> */}
+          <input type="file" onChange={handleFileChange} />
+          <button type="submit" onClick={handleSubmitImage}>Upload</button>
+           {/* </form> */}
+          <br></br>
         </form>
+        </a>
       </div>
 
       <footer className={styles.footer}>
